@@ -1,8 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useDispatch, useSelector} from "react-redux";
+import {filterTextItems} from "../../actions";
+import {State} from "../../reducers";
 export default function Header(){
+    const dispatch = useDispatch();
+    const searchText = useSelector<State, string>(state => state.searchText);
+
+
+    const onFilter = ({target:{value}}: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(filterTextItems(value))
+    }
     return <Wrapper>
-        <SearchInput type="search" placeholder="Search" />
+        <SearchInput value={searchText} onChange={onFilter} type="search" placeholder="Search" />
         <VerticalLine />
         <AddButton>+</AddButton>
     </Wrapper>

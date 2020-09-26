@@ -1,13 +1,17 @@
 import {FILTER_TEXT_ITEMS} from "../actions";
 
 export interface State{
-    textItems: string[]; // All text items
-    filteredItems: string[];
+    allTextItems: string[];
+    filteredTextItems: string[];
+    searchText: string;
 }
 
+const textItems = ["Milk", "Coffee", "Oranges", "Bread"];
+
 export const initialState: State = {
-    textItems: ["Milk", "Coffee", "Oranges", "Bread"],
-    filteredItems: [],
+    allTextItems: textItems,
+    filteredTextItems: textItems,
+    searchText: '',
 };
 
 export default function reducer(state: State = initialState, action: {type: string, payload: any}): State{
@@ -15,7 +19,8 @@ export default function reducer(state: State = initialState, action: {type: stri
         case FILTER_TEXT_ITEMS:
             return {
                 ...state,
-                filteredItems: action.payload
+                searchText: action.payload.searchText,
+                filteredTextItems: state.allTextItems.filter((textItem: string)=>textItem.toLowerCase().includes(action.payload.searchText.toLowerCase()))
             };
         default:
             return state;

@@ -5,10 +5,11 @@ import {useSelector} from "react-redux";
 import {State} from "../../reducers";
 
 export default function TextItemList() {
-    const textItems = useSelector<State, string[]>(state => state.textItems);
-    console.log({textItems})
+    const {allTextItems, filteredTextItems} = useSelector<State, State>(state => state);
+
+    console.log({allTextItems, filteredTextItems})
     return <Wrapper>
-        {textItems.map((textItem: string, index: number) => (
+        {filteredTextItems.map((textItem: string, index: number) => (
             <TextItem key={index} text={textItem}/>
         ))}
     </Wrapper>
