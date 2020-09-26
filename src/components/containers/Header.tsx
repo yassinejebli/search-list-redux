@@ -30,7 +30,7 @@ const AddButton = styled.button`
   background-color: transparent;
   border: none;
   border-radius: 50%;
-  
+  cursor: pointer;
   &:hover{
     background-color: rgba(137, 176, 240, 0.1);
   }

@@ -12,7 +12,6 @@ export default function TextItem({text}: TextItemProps){
 }
 
 const Wrapper = styled.div`
-  padding: 6px;
+  padding: 12px 8px;
   border-bottom: 1px solid #C1C1C1;
-  
 `
