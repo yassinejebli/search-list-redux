@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { filterTextItems } from "../../actions";
+import { addTextItem, setSearchText } from "../../actions";
 import { State } from "../../reducers";
 export default function Header() {
   const dispatch = useDispatch();
@@ -10,7 +10,11 @@ export default function Header() {
   const onFilter = ({
     target: { value },
   }: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(filterTextItems(value));
+    dispatch(setSearchText(value));
+  };
+
+  const onAddTextItem = () => {
+    dispatch(addTextItem());
   };
   return (
     <Wrapper>
@@ -21,7 +25,7 @@ export default function Header() {
         placeholder="Search"
       />
       <VerticalLine />
-      <AddButton>+</AddButton>
+      <AddButton onClick={onAddTextItem}>+</AddButton>
     </Wrapper>
   );
 }
